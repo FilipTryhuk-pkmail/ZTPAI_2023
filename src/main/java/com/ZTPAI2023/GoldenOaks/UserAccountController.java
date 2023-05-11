@@ -5,6 +5,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,31 +33,30 @@ public class UserAccountController {
     @GetMapping("/users")
     CollectionModel<EntityModel<UserAccount>> all() {
         List<EntityModel<UserAccount>> userAccounts = repository.findAll().stream()
-                .map(userAccount -> EntityModel.of(userAccount,
-                        linkTo(methodOn(UserAccountController.class).one(userAccount.getId())).withSelfRel(),
-                        linkTo(methodOn(UserAccountController.class).all()).withRel("users")))
+                .map(assembler::toModel)
                 .collect(Collectors.toList());
         return CollectionModel.of(userAccounts, linkTo(methodOn(UserAccountController.class).all()).withSelfRel());
     }
     // end::get-aggregate-root[]
 
     @PostMapping("/users")
-    UserAccount newUserAccount(@RequestBody UserAccount newUserAccount) {
-        return repository.save(newUserAccount);
+    ResponseEntity<?> newUserAccount(@RequestBody UserAccount newUserAccount) {
+        EntityModel<UserAccount> entityModel = assembler.toModel(repository.save(newUserAccount));
+        return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel);
     }
 
     @GetMapping("/users/{id}")
     EntityModel<UserAccount> one (@PathVariable Long id) {
         UserAccount userAccount = repository.findById(id)
                 .orElseThrow(() -> new UserAccountNotFoundException(id));
-        return EntityModel.of(userAccount,
-                linkTo(methodOn(UserAccountController.class).one(id)).withSelfRel(),
-                linkTo(methodOn(UserAccountController.class).all()).withRel("users"));
+        return assembler.toModel(userAccount);
     }
 
     @PutMapping("/users/{id}")
-    UserAccount replaceUserAccount(@RequestBody UserAccount newUserAccount, @PathVariable Long id) {
-        return repository.findById(id)
+    ResponseEntity<?> replaceUserAccount(@RequestBody UserAccount newUserAccount, @PathVariable Long id) {
+        UserAccount updatedUserAccount = repository.findById(id)
                 .map(userAccount -> {
                     userAccount.setEmail(newUserAccount.getEmail());
                     userAccount.setPass(newUserAccount.getPass());
@@ -71,10 +72,15 @@ public class UserAccountController {
                     newUserAccount.setId(id);
                     return repository.save(newUserAccount);
                 });
+        EntityModel<UserAccount> entityModel = assembler.toModel(updatedUserAccount);
+        return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+                .body(entityModel);
     }
 
     @DeleteMapping("/users/{id}")
-    void deleteUserAccount(@PathVariable Long id) {
+    ResponseEntity<?> deleteUserAccount(@PathVariable Long id) {
         repository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
