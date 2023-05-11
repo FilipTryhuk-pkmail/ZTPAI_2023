@@ -1,4 +1,4 @@
-package com.ZTPAI2023.GoldenOaks;
+package com.ZTPAI2023.GoldenOaks.history;
 
 public class HistoryNotFoundException extends RuntimeException {
     HistoryNotFoundException(Long id) {

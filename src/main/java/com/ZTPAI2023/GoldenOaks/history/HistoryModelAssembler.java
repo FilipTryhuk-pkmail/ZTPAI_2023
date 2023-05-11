@@ -1,4 +1,4 @@
-package com.ZTPAI2023.GoldenOaks;
+package com.ZTPAI2023.GoldenOaks.history;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;

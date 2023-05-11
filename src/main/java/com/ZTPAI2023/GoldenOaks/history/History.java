@@ -1,4 +1,4 @@
-package com.ZTPAI2023.GoldenOaks;
+package com.ZTPAI2023.GoldenOaks.history;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +17,7 @@ public class History {
 
     public History() {}
 
-    History(int idUser, int idTransaction, Status bookReceived) {
+    public History(int idUser, int idTransaction, Status bookReceived) {
         this.idUser = idUser;
         this.idTransaction = idTransaction;
         this.bookReceived = bookReceived;

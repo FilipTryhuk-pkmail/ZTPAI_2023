@@ -1,4 +1,4 @@
-package com.ZTPAI2023.GoldenOaks;
+package com.ZTPAI2023.GoldenOaks.userAccount;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

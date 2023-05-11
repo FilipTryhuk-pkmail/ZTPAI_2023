@@ -1,4 +1,4 @@
-package com.ZTPAI2023.GoldenOaks;
+package com.ZTPAI2023.GoldenOaks.userAccount;
 
 public class UserAccountNotFoundException extends RuntimeException {
     UserAccountNotFoundException(Long id) {

@@ -1,5 +1,10 @@
 package com.ZTPAI2023.GoldenOaks;
 
+import com.ZTPAI2023.GoldenOaks.history.History;
+import com.ZTPAI2023.GoldenOaks.history.HistoryRepository;
+import com.ZTPAI2023.GoldenOaks.history.Status;
+import com.ZTPAI2023.GoldenOaks.userAccount.UserAccount;
+import com.ZTPAI2023.GoldenOaks.userAccount.UserAccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
