@@ -1,0 +1,29 @@
+header  {
+    width: 100vw;
+    height: 20vh;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(180deg, #277061 29.22%, #A4C61E 100%);
+}
+
+main {
+    width: 100vw;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.logos {
+    margin-top: 5em;
+    width: 100vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}

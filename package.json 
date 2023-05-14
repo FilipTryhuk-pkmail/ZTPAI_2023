@@ -1,0 +1,13 @@
+{
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:FilipTryhuk-pkmail/ZTPAI_2023.git"
+    },
+    "author": "Greg L. Turnquist",
+    "homepage": "https://github.com/FilipTryhuk-pkmail/ZTPAI_2023",
+    "dependencies": {
+        "react": "^16.5.2",
+        "react-dom": "^16.5.2",
+        "rest": "^1.3.1"
+    },
+}
