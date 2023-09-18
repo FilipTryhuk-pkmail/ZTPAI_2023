@@ -1,18 +1,18 @@
 package com.ZTPAI2023.GoldenOaks.history;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
-@Table
+@Table(name = "history")
 public class History {
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    @Column(name = "id_user")
     private int idUser;
+    @Column(name = "id_transaction")
     private int idTransaction;
+    @Column(name = "book_received")
     private Status bookReceived;
 
     public History() {}

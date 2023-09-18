@@ -1,22 +1,30 @@
 package com.ZTPAI2023.GoldenOaks.userAccount;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
+@Table(name = "user_account")
 public class UserAccount {
-    private @Id @GeneratedValue Long id;
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    @Column(name = "email")
     private String email;
+    @Column(name = "pass")
     private String pass;
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surname;
+    @Column(name = "phone_number")
     private String phoneNumber;
+    @Column(name = "city")
     private String city;
+    @Column(name = "street_address")
     private String streetAddress;
+    @Column(name = "postal_code")
     private String postalCode;
+    @Column(name = "user_admin")
     private boolean userAdmin = false;
 
     public UserAccount() {}

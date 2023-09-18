@@ -3,6 +3,7 @@ package com.ZTPAI2023.GoldenOaks.userAccount;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -18,6 +19,7 @@ public class UserAccountController {
     private final UserAccountRepository repository;
     private final UserAccountAssembler assembler;
 
+    @Autowired
     UserAccountController(UserAccountRepository repository, UserAccountAssembler assembler) {
         this.repository = repository;
         this.assembler = assembler;
@@ -43,7 +45,7 @@ public class UserAccountController {
     }
 
     @GetMapping("/users/{id}")
-    EntityModel<UserAccount> one (@PathVariable Long id) {
+    EntityModel<UserAccount> one(@PathVariable Long id) {
         UserAccount userAccount = repository.findById(id)
                 .orElseThrow(() -> new UserAccountNotFoundException(id));
         return assembler.toModel(userAccount);

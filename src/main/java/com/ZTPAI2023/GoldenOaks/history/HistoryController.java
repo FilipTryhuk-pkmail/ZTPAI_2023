@@ -1,5 +1,6 @@
 package com.ZTPAI2023.GoldenOaks.history;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
@@ -19,7 +20,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class HistoryController {
     private final HistoryRepository historyRepository;
     private final HistoryModelAssembler assembler;
-
+    @Autowired
     HistoryController(HistoryRepository historyRepository, HistoryModelAssembler assembler) {
         this.historyRepository = historyRepository;
         this.assembler = assembler;
