@@ -7,7 +7,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "user_account")
 public class UserAccount {
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long id;
+    private static final long serialVersionUID = 1L;
+
+    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @Column(name = "email")
     private String email;
     @Column(name = "pass")
@@ -147,4 +150,6 @@ public class UserAccount {
                 + ", surname=" + this.surname + ", phone number=" + this.phoneNumber + ", city=" + this.city + ", street address="
                 + this.streetAddress + ", postal code=" + this.postalCode + ", user admin=" + this.userAdmin + "}";
     }
+
+
 }

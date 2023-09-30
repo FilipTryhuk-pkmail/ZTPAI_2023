@@ -52,3 +52,7 @@ CREATE TABLE history(
                             FOREIGN KEY (id_user)
                                 REFERENCES user_account(id)
 );
+
+CREATE TABLE users_roles(
+
+)
